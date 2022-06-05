@@ -1,6 +1,7 @@
 //const { resolve } = require('path');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
     entry: "./src/index.js",
@@ -29,6 +30,11 @@ module.exports = {
                     // Use es un arreglo u objeto donde dices que loader aplicaras
                     loader: 'babel-loader'
                 }
+            },
+            {
+                test: /\.css|\.styl$/i,
+                use: [MiniCssExtractPlugin.loader,
+                'css-loader', 'stylus-loader'],
             }
         ]
     },
@@ -37,6 +43,7 @@ module.exports = {
             inject: true,  //se establece que es una inserción true
             template: './public/index.html', //de donde tomamos el archivo html principal
             filename: './index.html' //nombre de salida que va a tener en la carpeta dist
-        })
-    ],
+        }),
+        new MiniCssExtractPlugin(),
+    ]
 }
