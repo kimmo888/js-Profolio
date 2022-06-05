@@ -15,6 +15,7 @@ module.exports = {
         // Con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
         filename: 'main.js',
          // filename le pone el nombre al archivo final
+        assetModuleFilename: "images/[hash][ext]",  //destino y carpeta de salida de las imágenes con hash y extension se agrega para no utilizar el copy-plugin, se cambia también el archivo templete donde  se hace el llamado de estas imágenes
     },
     resolve: {
         extensions: ['.js,']
@@ -36,6 +37,10 @@ module.exports = {
                 test: /\.css|\.styl$/i,  //webpack lee de derecha a izquierda o de abajo hacia arriba, primero llera en este caso los .styl y después los css
                 use: [MiniCssExtractPlugin.loader,
                 'css-loader', 'stylus-loader'],
+            },
+            {
+                test:/\.(png|svg|jpg|jpeg|gif)$/i,  //se declaran las extensiones de los archivos a importar.
+                type: 'asset/resource',
             }
         ]
     },
