@@ -15,7 +15,7 @@ module.exports = {
         // Con path.resolve podemos decir dónde va estar la carpeta y la ubicación del mismo
         filename: 'main.js',
          // filename le pone el nombre al archivo final
-        assetModuleFilename: "images/[hash][ext]",  //destino y carpeta de salida de las imágenes con hash y extension se agrega para no utilizar el copy-plugin, se cambia también el archivo templete donde  se hace el llamado de estas imágenes
+        assetModuleFilename: "images/[hash][ext][query]",  //destino y carpeta de salida de las imágenes con hash y extension se agrega para no utilizar el copy-plugin, se cambia también el archivo templete donde  se hace el llamado de estas imágenes
     },
     resolve: {
         extensions: ['.js,']
@@ -41,7 +41,34 @@ module.exports = {
             {
                 test:/\.(png|svg|jpg|jpeg|gif)$/i,  //se declaran las extensiones de los archivos a importar.
                 type: 'asset/resource',
-            }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/i,  // Tipos de fuentes a incluir
+                type: 'asset/resource',  // Tipo de módulo a usar (este mismo puede ser usado para archivos de imágenes)
+                use: {
+                    loader: 'url-loader', // NOMBRE DEL LOADER
+                    options: {
+                        limit: false, // O LE PASAMOS UN NUMERO
+                        // Habilita o deshabilita la transformación de archivos en base64.
+                        mimetype: 'application/font-woff',
+                        // Especifica el tipo MIME con el que se alineará el archivo.
+                        // Los MIME Types (Multipurpose Internet Mail Extensions)
+                        // son la manera standard de mandar contenido a través de la red.
+                        name: "[name].[ext]",
+                        // EL NOMBRE INICIAL DEL PROYECTO + SU EXTENSIÓN
+                        // PUEDES AGREGARLE [name]hola.[ext] y el output del archivo seria
+                        // ubuntu-regular hola.woff
+                        outputPath: './fonts/',
+                        // EL DIRECTORIO DE SALIDA (SIN COMPLICACIONES)
+                        publicPath: './fonts/',
+                        // EL DIRECTORIO PUBLICO (SIN COMPLICACIONES)
+                        esModule: false,
+                /* generator: {
+                  filename: 'assets/fonts/[hash][ext][query]',  // Directorio de salida también se podría poner en la parte de arriba como las imágenes en output: {assetModuleFilename: "fonts/[hash][ext]",} esta opción no necesita la opción de url-loader o se utiliza esta por defecto o se utiliza la de url-loader para que no genere conflicto.
+                            } */
+                        },
+                    }
+            },
         ]
     },
     plugins: [
