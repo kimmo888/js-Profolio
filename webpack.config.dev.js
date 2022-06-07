@@ -20,6 +20,7 @@ module.exports = {
         assetModuleFilename: "assets/fonts/[hash][ext][query]",  //destino y carpeta de salida de las imágenes con hash y extension se agrega para no utilizar el copy-plugin, se cambia también el archivo templete donde  se hace el llamado de estas imágenes
     },
     mode: 'development',
+    //watch: true, // es utilizada en la configuración de desarrollo con esta opción se queda a la espera de nuevos cambios en la producción, o se puede hacer un nuevo script en el //?package.json "build:watch": "webpack --watch --config webpack.config.js", para una ejecución de este mismo con la opción de watch o con el flag directamente en la terminal npm run build --watch
     resolve: {
         extensions: ['.js,'],
         // Aquí ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
