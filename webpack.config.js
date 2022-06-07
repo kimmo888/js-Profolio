@@ -20,7 +20,9 @@ module.exports = {
         filename: '[name].[contenthash].js',
          // filename le pone el nombre al archivo final
         assetModuleFilename: "assets/fonts/[hash][ext][query]",  //destino y carpeta de salida de las imágenes con hash y extension se agrega para no utilizar el copy-plugin, se cambia también el archivo templete donde  se hace el llamado de estas imágenes
+        clean:true
     },
+    mode:'production',
     resolve: {
         extensions: ['.js,'],
         // Aquí ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
