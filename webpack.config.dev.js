@@ -6,6 +6,7 @@ const CopyPlugin = require ('copy-webpack-plugin'); //viene incluido en webpack 
 const Dotenv = require('dotenv-webpack');
 
 
+
 module.exports = {
     entry: "./src/index.js",
     // Entry nos permite decir el punto de entrada de nuestra aplicación
@@ -22,7 +23,7 @@ module.exports = {
     mode: 'development',
     //watch: true, // es utilizada en la configuración de desarrollo con esta opción se queda a la espera de nuevos cambios en la producción, o se puede hacer un nuevo script en el //?package.json "build:watch": "webpack --watch --config webpack.config.js", para una ejecución de este mismo con la opción de watch o con el flag directamente en la terminal npm run build --watch
     resolve: {
-        extensions: ['.js,'],
+        extensions: ['.js'],
         // Aquí ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
         alias: {  // se declaran los alias con el @ y el nombre que queramos darle, en este cas es para las ubicaciones y se remplazan en los archivos originales donde se hacen llamados a las ubicaciones.
             '@utils': path.resolve(__dirname, 'src/utils/'),
@@ -103,4 +104,15 @@ module.exports = {
         }),
         new Dotenv(),
     ],
+    devServer: {
+        static: { //cambio de palabra contentBase
+            directory: path.join(__dirname, 'dist'),
+            watch: true
+        },
+        watchFiles: path.join(__dirname, "./**"), //observa los cambios en todos nuestros archivos y actualiza el navegador
+        compress: true,
+        historyApiFallback: true,
+        port: 3006,
+        open: true, //Hace que se abra en el navegador
+    },
 }

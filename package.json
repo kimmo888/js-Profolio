@@ -5,9 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --config webpack.config.dev.js --watch",
     "buildPc": "webpack --config webpack.config.js",
     "build": "node ./scripts/create-env.js && webpack --config webpack.config.js",
-    "dev": "webpack --config webpack.config.dev.js"
+    "dev": "webpack --config webpack.config.dev.js",
+    "start": "webpack serve --config webpack.config.dev.js"
   },
   "repository": {
     "type": "git",
@@ -42,7 +44,8 @@
     "stylus-loader": "^7.0.0",
     "terser-webpack-plugin": "^5.3.3",
     "url-loader": "^4.1.1",
-    "webpack-cli": "^4.9.2"
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.2"
   },
   "dependencies": {
     "@babel/runtime": "^7.18.3"
