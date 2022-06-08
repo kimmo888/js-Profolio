@@ -22,6 +22,7 @@ module.exports = {
     },
     mode: 'development',
     //watch: true, // es utilizada en la configuración de desarrollo con esta opción se queda a la espera de nuevos cambios en la producción, o se puede hacer un nuevo script en el //?package.json "build:watch": "webpack --watch --config webpack.config.js", para una ejecución de este mismo con la opción de watch o con el flag directamente en la terminal npm run build --watch
+    devtool: 'source-map',  //es opción nos permite generar un mapa en .json donde identifica cada una de las partes del proyecto.
     resolve: {
         extensions: ['.js'],
         // Aquí ponemos las extensiones que tendremos en nuestro proyecto para webpack los lea
